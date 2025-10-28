@@ -22,28 +22,28 @@ public class UsuarioRestController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<Usuario> listarTodos() {
-        return null;
+        return usuarioDao.todos();
     }
 
-    @GetMapping("/{id}")
-    public Usuario buscarPorId(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{idUsuario}")
+    public Usuario buscarPorId(@PathVariable Long idUsuario) {
+        return usuarioDao.buscarUno(idUsuario);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public Usuario crear(@RequestBody Usuario usuario) {
-        return null;
+        return usuarioDao.insertarUno(usuario);
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public Usuario actualizar(@RequestBody Usuario usuario) {
-        return null;
+        return usuarioDao.actualizar(usuario);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
-        return null;
+    @DeleteMapping("/eliminar/{idUsuario}")
+    public int eliminar(@PathVariable Long idUsuario) {
+        return usuarioDao.eliminarPorId(idUsuario);
     }
 }

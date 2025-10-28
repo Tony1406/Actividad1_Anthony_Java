@@ -17,30 +17,50 @@ public class CategoriaDaoImpl implements CategoriaDao {
 	@Override
 	public Categoria buscarUno(Long idCategoria) {
 		// TODO Auto-generated method stub
-		return null;
+		return categoriaRepository.findById(idCategoria).orElse(null);
 	}
 
 	@Override
 	public List<Categoria> todos() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoriaRepository.findAll();
 	}
 
 	@Override
 	public int eliminarPorId(Long idCategoria) {
 		// TODO Auto-generated method stub
-		return 0;
+		try {
+			
+			if(categoriaRepository.findById(idCategoria).orElse(null)==null)
+				return 0; // no existe o es nulo
+			
+			categoriaRepository.deleteById(idCategoria);
+			return 1; // todo va bien
+
+		} catch (Exception e) {
+			return -1; //excepcion no se persiste
+		}
 	}
 
 	@Override
 	public Categoria insertarUno(Categoria categoria) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return categoriaRepository.save(categoria);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public Categoria actualizar(Categoria categoria) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return categoriaRepository.save(categoria);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

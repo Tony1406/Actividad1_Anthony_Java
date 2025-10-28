@@ -1,6 +1,6 @@
 package actividad1.restcontroller;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,28 +22,28 @@ public class CategoriaRestController {
     @Autowired
     private CategoriaDao categoriaDao;
 
-    @GetMapping
+	@GetMapping("/todos")
     public List<Categoria> listarTodas() {
-        return null;
+        return categoriaDao.todos();
     }
 
-    @GetMapping("/{id}")
-    public Categoria buscarPorId(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{idCategoria}")
+    public Categoria buscarPorId(@PathVariable Long idCategoria) {
+        return categoriaDao.buscarUno(idCategoria);
     }
 
-    @PostMapping
+	@PostMapping("/crear")
     public Categoria crear(@RequestBody Categoria categoria) {
-        return null;
+        return categoriaDao.insertarUno(categoria);
     }
 
-    @PutMapping
+	@PutMapping("/actualizar")
     public Categoria actualizar(@RequestBody Categoria categoria) {
-        return null;
+		return categoriaDao.actualizar(categoria);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
-        return null;
+	@DeleteMapping("/eliminar/{idCategoria}")
+    public int eliminar(@PathVariable Long idCategoria) {
+        return categoriaDao.eliminarPorId(idCategoria);
     }
 }

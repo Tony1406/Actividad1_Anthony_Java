@@ -22,28 +22,28 @@ public class PedidoRestController {
     @Autowired
     private PedidoDao pedidoDao;
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<Pedido> listarTodos() {
-        return null;
+        return pedidoDao.todos();
     }
 
-    @GetMapping("/{id}")
-    public Pedido buscarPorId(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{idPedido}")
+    public Pedido buscarPorId(@PathVariable Long idPedido) {
+        return pedidoDao.buscarUno(idPedido);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public Pedido crear(@RequestBody Pedido pedido) {
-        return null;
+        return pedidoDao.insertarUno(pedido);
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public Pedido actualizar(@RequestBody Pedido pedido) {
-        return null;
+        return pedidoDao.actualizar(pedido);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
-        return null;
+    @DeleteMapping("/eliminar/{idPedido}")
+    public int eliminar(@PathVariable Long idPedido) {
+        return pedidoDao.eliminarPorId(idPedido);
     }
 }

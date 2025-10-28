@@ -16,34 +16,34 @@ import actividad1.modelo.dao.LineaPedidoDao;
 import actividad1.modelo.entities.LineaPedido;
 
 @RestController
-@RequestMapping("/lineaspedido")
+@RequestMapping("/lineapedidos")
 public class LineaPedidoRestController {
 
     @Autowired
     private LineaPedidoDao lineaPedidoDao;
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<LineaPedido> listarTodos() {
-        return null;
+        return lineaPedidoDao.todos();
     }
 
-    @GetMapping("/{id}")
-    public LineaPedido buscarPorId(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{numeroOrden}")
+    public LineaPedido buscarPorId(@PathVariable Long numeroOrden) {
+        return lineaPedidoDao.buscarUno(numeroOrden);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public LineaPedido crear(@RequestBody LineaPedido lineaPedido) {
-        return null;
+        return lineaPedidoDao.insertarUno(lineaPedido);
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public LineaPedido actualizar(@RequestBody LineaPedido lineaPedido) {
-        return null;
+        return lineaPedidoDao.actualizar(lineaPedido);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
-        return null;
+    @DeleteMapping("/eliminar/{numeroOrden}")
+    public int eliminar(@PathVariable Long numeroOrden) {
+        return lineaPedidoDao.eliminarPorId(numeroOrden);
     }
 }

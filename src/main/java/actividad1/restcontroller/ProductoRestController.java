@@ -22,28 +22,28 @@ public class ProductoRestController {
     @Autowired
     private ProductoDao productoDao;
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<Producto> listarTodos() {
-        return null;
+        return productoDao.todos();
     }
 
-    @GetMapping("/{id}")
-    public Producto buscarPorId(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{idProducto}")
+    public Producto buscarPorId(@PathVariable Long idProducto) {
+        return productoDao.buscarUno(idProducto);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public Producto crear(@RequestBody Producto producto) {
-        return null;
+        return productoDao.insertarUno(producto);
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public Producto actualizar(@RequestBody Producto producto) {
-        return null;
+        return productoDao.actualizar(producto);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
-        return null;
+    @DeleteMapping("/eliminar/{idProducto}")
+    public int eliminar(@PathVariable Long idProducto) {
+        return productoDao.eliminarPorId(idProducto);
     }
 }
